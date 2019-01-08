@@ -1,36 +1,48 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled, { css } from 'styled-components'
 
+import { media } from '../utils/media'
+
+const Nav = styled.nav`
+  height: ${props => props.theme.headerHeight};
+  position: absolute;
+  width: 100%;
+`
+const NavLink = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.colors.primary};
+
+  :visited {
+    color: ${props => props.theme.colors.primary};
+  }
+`
+
+const Container = styled.div`
+  padding: 16px;
+  ${media.desktop`
+    max-width: ${props => props.theme.sizes.maxWidth};
+    margin: auto;
+  `}
+`
 const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-      position: `absolute`,
-      width: `100%`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
+  <Nav>
+    <Container>
+      <span
+        css={css`
+          font-weight: 700;
+          font-size: 14px;
+        `}
+      >
+        <NavLink
           to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
         >
           {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </div>
+        </NavLink>
+      </span>
+    </Container>
+  </Nav>
 )
 
 Header.propTypes = {

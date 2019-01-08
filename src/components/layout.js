@@ -23,6 +23,7 @@ const Layout = ({ children }) => (
       <>
         <ThemeProvider theme={theme}>
           <div>
+            <Header siteTitle={data.site.siteMetadata.title} />
             {children}
           </div>
         </ThemeProvider>

@@ -44,11 +44,12 @@ const BuyButton = styled.button`
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
   height: 48px;
-  border-radius: 14px;
+  border-radius: 24px;
   width: 200px;
   cursor: pointer;
 `
-
+const ImgContainer = styled.div`
+`
 const Hero = props => {
   const { image, content } = props
   return (
@@ -58,6 +59,7 @@ const Hero = props => {
         padding: 16px;
         display: flex;
         flex-direction: column-reverse;
+        justify-content: center;
         ${media.desktop`
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -68,12 +70,12 @@ const Hero = props => {
     >
       <Content>
         <HeroTitle>Your website or app engraved.</HeroTitle>
-        <HeroSubTitle>Because having a digital version isn't enough.</HeroSubTitle>
+        <HeroSubTitle>Because having it on your phone isn't enough.</HeroSubTitle>
         <BuyButton>Buy now</BuyButton>
       </Content>
-      <div>
+      <ImgContainer>
         {image}
-      </div>
+      </ImgContainer>
     </Section>
   )
 }
