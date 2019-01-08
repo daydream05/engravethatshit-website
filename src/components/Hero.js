@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import Img from 'gatsby-image'
-
 import { media } from '../utils/media'
+import { Link } from 'gatsby';
 
 const Section = styled.section`
   height: ${props => props.fullPage ? `100vh` : null};
@@ -40,13 +39,18 @@ const HeroSubTitle = styled.p`
   `}
 `
 
-const BuyButton = styled.button`
+const ShopButton = styled(Link)`
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
   height: 48px;
-  border-radius: 24px;
+  border-radius: 4px;
   width: 200px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 const ImgContainer = styled.div`
 `
@@ -71,7 +75,7 @@ const Hero = props => {
       <Content>
         <HeroTitle>Your website or app engraved.</HeroTitle>
         <HeroSubTitle>Because having it on your phone isn't enough.</HeroSubTitle>
-        <BuyButton>Buy now</BuyButton>
+        <ShopButton to="/shop/">Shop now</ShopButton>
       </Content>
       <ImgContainer>
         {image}
