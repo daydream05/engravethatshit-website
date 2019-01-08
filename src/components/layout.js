@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 
+import theme from '../styles/theme'
+
 import Header from './header'
 import './layout.css'
 
@@ -34,7 +36,12 @@ const Layout = ({ children }) => (
         </ThemeProvider>
         {/* Footer placed in seperate ThemeProvider to avoid Rendering an extra DIV in HTML output  */}
         <ThemeProvider theme={theme}>
-          <footer>
+          <footer style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+            padding: `0px 1.0875rem 1.45rem`,
+            paddingTop: 0,
+          }}>
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a>

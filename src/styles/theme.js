@@ -4,3 +4,5 @@ const theme = {
     primary: '#004FA7',
   }
 }
+
+export default theme
