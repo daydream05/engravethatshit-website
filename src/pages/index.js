@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import Image from '../components/image'
 import SEO from '../components/SEO'
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <h1>Hi people</h1>
@@ -17,5 +17,24 @@ const IndexPage = () => (
     <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )
+
+export const homePagQuery = graphql`
+  query {
+    contentfulProduct {
+      name
+      price
+      image {
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
+      description {
+        childMarkdownRemark {
+          html
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
