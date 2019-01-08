@@ -51,7 +51,7 @@ const ShopButton = styled(Link)`
 const ImgContainer = styled.div`
 `
 const Hero = props => {
-  const { image, content } = props
+  const { image } = props
   return (
     <Section
       fullPage
