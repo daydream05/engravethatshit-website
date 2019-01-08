@@ -4,11 +4,7 @@ import styled, { css } from 'styled-components'
 import { media } from '../utils/media'
 import { Link } from 'gatsby';
 
-const Section = styled.section`
-  height: ${props => props.fullPage ? `100vh` : null};
-  max-width: 1440px;
-  margin: auto;
-`
+import { Section } from '../components/StyledComponents'
 
 const Content = styled.div `
   display: flex;
@@ -69,6 +65,7 @@ const Hero = props => {
           grid-template-columns: 1fr 1fr;
           align-items: center;
           padding: 0;
+          margin: auto;
         `}
       `}
     >
