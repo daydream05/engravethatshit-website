@@ -3,12 +3,17 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
+import { setConfig } from 'react-hot-loader'
+
 import { media } from '../utils/media'
 
 import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 
 import { Section } from '../components/StyledComponents'
+
+// not sure what this does
+setConfig({ pureSFC: true })
 
 const ProductTitle = styled.h1`
   text-align: center;
