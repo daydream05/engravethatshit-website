@@ -86,7 +86,7 @@ const ButtonGroup = styled.div`
   flex-direction: column;
 
   > :first-child {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 `
 
@@ -108,7 +108,7 @@ const ProductTemplate = ({ data }) => {
     <Layout>
       <Section
         css={css`
-          padding: 64px 16px;
+          padding: 88px 16px;
         `}
       >
       <Container>

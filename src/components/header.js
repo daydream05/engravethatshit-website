@@ -11,6 +11,8 @@ const Nav = styled.nav`
   position: absolute;
   width: 100%;
   border-bottom: 1px solid #f5f3f7;
+  display: flex;
+  justify-content: center;
 `
 const NavLink = styled(Link)`
   text-decoration: none;
@@ -27,6 +29,7 @@ const Container = styled.div`
   justify-content: space-between;
   font-weight: 700;
   font-size: 14px;
+  width: 100%;
 
   ${media.desktop`
     max-width: ${props => props.theme.sizes.maxWidth};
@@ -36,11 +39,15 @@ const Container = styled.div`
 
 const Cart = styled.button`
   border: none;
+  cursor: pointer;
 `
 const Header = ({ siteTitle }) => (
   <Nav>
     <Container>
-      <span>
+      <span css={css`
+        display: flex;
+        align-items: center;
+      `}>
         <NavLink
           to="/"
         >
@@ -49,8 +56,14 @@ const Header = ({ siteTitle }) => (
       </span>
       <Cart
         className="snipcart-checkout"
+        aria-label="shopping cart"
       >
-        <FaShoppingCart />
+        <FaShoppingCart
+          css={css`
+            color: ${props => props.theme.colors.primary};
+            font-size: 24px;
+          `}
+        />
       </Cart>
     </Container>
   </Nav>

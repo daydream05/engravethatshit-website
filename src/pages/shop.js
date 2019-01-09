@@ -50,7 +50,7 @@ const Shop = ({ data }) => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: 64px 16px;
+          padding: 88px 16px;
         `}
       >
         <PageTitle>Shop</PageTitle>
