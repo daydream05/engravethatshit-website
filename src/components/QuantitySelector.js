@@ -79,6 +79,11 @@ class QuantitySelector extends Component {
         grid-template-columns: 40px 60px 40px;
         height: 40px;
         margin: 0;
+
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
       `}>
         <SubtractButton
           aria-label="subract"
@@ -94,9 +99,10 @@ class QuantitySelector extends Component {
             padding: 0;
             background-color: #EDEDED;
 
-            ::-webkit-outer-spin-button { 
+            ::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button { 
               -webkit-appearance: none; 
-              margin: 0; 
+              margin: 3rem; 
             }
           `}
         />
