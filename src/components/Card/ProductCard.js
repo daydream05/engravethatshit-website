@@ -15,11 +15,12 @@ const ProductName = styled.h3`
   font-size: 24px;
   font-weight: 400;
   margin: 0;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.base};
 `
 
 const ProductPrice = styled.span`
   font-weight: bold;
+  color: ${props => props.theme.colors.primary};
   font-size: 24px;
 `
 
