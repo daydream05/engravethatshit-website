@@ -1,10 +1,13 @@
 import React from 'react'
 import Img from 'gatsby-image'
+import { StaticQuery, graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import { media } from '../../utils/media'
 
 import { UnstyledLink } from '../StyledComponents'
+
+// TODO: refactor add to cart button to take in button url
 
 const CardContainer = styled.div`
   display: flex;
@@ -79,9 +82,34 @@ const ProductCard = ({ product }) => {
           </div>
         <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
       </UnstyledLink>
-      <AddToCartButton>Add to cart</AddToCartButton>
+      <StaticQuery
+        query={siteQuery}
+        render={data => {
+          const { siteUrl } = data.site.siteMetadata
+          return (
+            <AddToCartButton
+              className="snipcart-add-item"
+              data-item-id={product.id}
+              data-item-name={product.name}
+              data-item-price={product.price}
+              data-item-url={`${siteUrl}/shop`}
+            >Add to cart</AddToCartButton>
+          )
+        }}
+      />
+
     </CardContainer>
   )
 }
+
+const siteQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+  }
+`
 
 export default ProductCard

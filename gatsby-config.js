@@ -4,6 +4,8 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require("dotenv").config({path: `.env.${activeEnv}`})
 
+const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'full-url' 
+
 module.exports = {
   siteMetadata: {
     title: `Engrave That Sh*t`,
@@ -11,6 +13,7 @@ module.exports = {
     author: `@gatsbyjs`,
     titleTemplate: '',
     url: `https://engravethatshit.com/`,
+    siteUrl,
     twitterUsername: `@engravethatshit`,
     image: `/images/gatsby-astronaut.png`,
   },
@@ -49,6 +52,7 @@ module.exports = {
       resolve: `gatsby-plugin-snipcart`,
       options: {
         apiKey: process.env.SNIPCART_API_KEY,
+        autopop: true,
       }
     },
     {

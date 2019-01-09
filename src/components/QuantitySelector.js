@@ -31,6 +31,10 @@ class QuantitySelector extends Component {
   addQuantity = (event) => {
     event.preventDefault()
     this.setState({ quantity: this.state.quantity + 1 })
+
+    if (this.props.onQuantityChange) {
+      this.props.onQuantityChange(this.state.quantity + 1)
+    }
   }
 
   subtractQuantity = (event) => {
@@ -38,22 +42,35 @@ class QuantitySelector extends Component {
 
     if(this.state.quantity > 1) {
       this.setState({ quantity: this.state.quantity - 1 })
+
+      if (this.props.onQuantityChange) {
+        this.props.onQuantityChange(this.state.quantity - 1)
+      }
     }
   }
 
-  handleQuantityChange = (event) => {
+  handleQuantityChange = event => {
     const target = event.target
+    let quantity
 
-    if(target.value >= 0) {
+    if (target.value >= 0) {
+      quantity = target.value
       this.setState({
-        quantity: target.value,
+        quantity,
       })
     } else {
+      quantity = 1
       this.setState({
-        quantity: 1
+        quantity
       })
     }
+
+    if (this.props.onQuantityChange) {
+      this.props.onQuantityChange(quantity)
+    }
   }
+
+  
 
   render() {
     return (
@@ -63,7 +80,9 @@ class QuantitySelector extends Component {
         height: 40px;
         margin: 0;
       `}>
-        <SubtractButton onClick={this.subtractQuantity}>-</SubtractButton>
+        <SubtractButton
+          aria-label="subract"
+          onClick={this.subtractQuantity}>-</SubtractButton>
         <input
           name="quantity"
           type="number"
@@ -81,7 +100,9 @@ class QuantitySelector extends Component {
             }
           `}
         />
-        <AddButton onClick={this.addQuantity}>+</AddButton>
+        <AddButton
+          aria-label="add"
+          onClick={this.addQuantity}>+</AddButton>
       </form>
     )
   }

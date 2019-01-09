@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
@@ -52,7 +52,7 @@ const QuantityTitle = styled.div`
   font-size: 24px;
 `
 
-const AddToCartButton = styled.a `
+const AddToCartButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,9 +94,16 @@ const ProductTemplate = ({ data }) => {
   const {
     name,
     image,
+    id,
     price,
+    fields,
     description,
   } = data.contentfulProduct
+
+  const { siteUrl } = data.site.siteMetadata
+
+  const [quantity, setQuantity] = useState(1)
+
   return (
     <Layout>
       <Section
@@ -126,11 +133,25 @@ const ProductTemplate = ({ data }) => {
             <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }}/>
             <QuantityGroup>
               <QuantityTitle>Quantity</QuantityTitle>
-              <QuantitySelector />
+              <QuantitySelector onQuantityChange={setQuantity}/>
             </QuantityGroup>
             <ButtonGroup>
-              <AddToCartButton>Add to cart</AddToCartButton>
-              <BuyItNowButton>Buy it now</BuyItNowButton>
+              <AddToCartButton
+                className="snipcart-add-item"
+                data-item-id={id}
+                data-item-name={name}
+                data-item-price={price}
+                data-item-quantity={`${quantity}`}
+                data-item-url={`${siteUrl}/${fields.path}`}
+              >Add to cart</AddToCartButton>
+              <BuyItNowButton
+                className="snipcart-add-item"
+                data-item-id={id}
+                data-item-name={name}
+                data-item-price={price}
+                data-item-quantity="1"
+                data-item-url={`${siteUrl}/${fields.path}`}
+              >Buy it now</BuyItNowButton>
             </ButtonGroup>
           </div>
         </div>
@@ -146,7 +167,11 @@ export const productTemplateQuery = graphql`
   query($slug: String!) {
     contentfulProduct(slug: { eq: $slug }) {
       name
+      id
       price
+      fields {
+        path
+      }
       description {
         childMarkdownRemark {
           html
@@ -157,6 +182,11 @@ export const productTemplateQuery = graphql`
         fluid(maxHeight: 400 maxWidth: 400) {
           ...GatsbyContentfulFluid_withWebp
         }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
   }
