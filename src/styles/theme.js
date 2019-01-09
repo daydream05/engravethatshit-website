@@ -4,6 +4,7 @@ const theme = {
     primary: '#6f2fa0',
     darkGray: '#484848',
     white: '#fff',
+    black: '#000000',
   },
   headerHeight: '64px',
   sizes: {

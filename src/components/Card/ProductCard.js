@@ -1,6 +1,5 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import { media } from '../../utils/media'
