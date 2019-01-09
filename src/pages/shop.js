@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { media } from '../utils/media'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import { ProductCard } from '../components/Card'
