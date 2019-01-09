@@ -93,6 +93,8 @@ const ProductCard = ({ product }) => {
               data-item-name={product.name}
               data-item-price={product.price}
               data-item-url={`${siteUrl}/shop/`}
+              data-item-custom1-name="Website/App URL"
+              data-item-custom1-required="true"
             >Add to cart</AddToCartButton>
           )
         }}

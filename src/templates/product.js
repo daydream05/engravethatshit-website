@@ -148,6 +148,8 @@ const ProductTemplate = ({ data }) => {
                 data-item-price={price}
                 data-item-quantity={`${quantity}`}
                 data-item-url={`${siteUrl}/${fields.path}`}
+                data-item-custom1-name="Website/App URL"
+                data-item-custom1-required="true"
               >Add to cart</AddToCartButton>
               <BuyItNowButton
                 className="snipcart-add-item"
@@ -156,6 +158,8 @@ const ProductTemplate = ({ data }) => {
                 data-item-price={price}
                 data-item-quantity="1"
                 data-item-url={`${siteUrl}/${fields.path}`}
+                data-item-custom1-name="Website/App URL"
+                data-item-custom1-required="true"
               >Buy it now</BuyItNowButton>
             </ButtonGroup>
           </div>
