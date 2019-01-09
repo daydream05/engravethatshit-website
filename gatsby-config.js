@@ -4,7 +4,7 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require("dotenv").config({path: `.env.${activeEnv}`})
 
-const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'full-url' 
+const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://engravethatshit.netlify.com/' 
 
 module.exports = {
   siteMetadata: {
