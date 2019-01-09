@@ -92,7 +92,7 @@ const ProductCard = ({ product }) => {
               data-item-id={product.id}
               data-item-name={product.name}
               data-item-price={product.price}
-              data-item-url={`${siteUrl}/shop`}
+              data-item-url={`${siteUrl}/shop/`}
             >Add to cart</AddToCartButton>
           )
         }}
