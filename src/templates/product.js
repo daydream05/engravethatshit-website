@@ -50,7 +50,7 @@ const Description = styled.div`
 const QuantityGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `
 
 const QuantityTitle = styled.div`
@@ -140,6 +140,12 @@ const ProductTemplate = ({ data }) => {
               <QuantityTitle>Quantity</QuantityTitle>
               <QuantitySelector onQuantityChange={setQuantity}/>
             </QuantityGroup>
+            <span css={css`
+              font-style: italic;
+              margin-bottom: 2rem;
+              opacity: 0.8;
+              font-size: 16px;
+            `}>Looking to buy in bulk? Shoot us an email!</span>
             <ButtonGroup>
               <AddToCartButton
                 className="snipcart-add-item"
