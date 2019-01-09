@@ -10,9 +10,7 @@ import SEO from '../components/SEO'
 
 import { Section } from '../components/StyledComponents'
 
-const PageTitle = styled.h1`
-  color: ${props => props.theme.colors.base};
-`
+const PageTitle = styled.h1``
 
 const ProductList = styled.ul`
   list-style-type: none;
@@ -24,6 +22,7 @@ const ProductList = styled.ul`
   ${media.desktop`
     flex-direction: row;
     padding: 64px;
+    max-width: 1200px;
     justify-content: space-around;
   `}
 `
@@ -36,6 +35,13 @@ const ListItem = styled.li`
   `}
 `
 
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  height: 100%;
+  margin: auto;
+`
 const ProductName = styled.h3`
   font-size: 24px;
   font-weight: 400;
@@ -52,6 +58,8 @@ const ProductDescription = styled.div`
   font-size: 16px;
   color: ${props => props.theme.colors.darkGray};
   margin-bottom: 2rem;
+  flex: 1;
+  
 `
 
 const AddToCartButton = styled.a`
@@ -64,11 +72,22 @@ const AddToCartButton = styled.a`
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   cursor: pointer;
+  padding: 0 2rem;
+`
+
+const ImgContainer = styled.div`
+
+  ${media.desktop`
+    width: 400px;
+    height: 400px;
+  `}
 `
 const ProductCard = ({ product }) => {
   return (
-    <>
-      <Img fluid={product.image.fluid} />
+    <CardContainer>
+      <ImgContainer>
+        <Img fluid={product.image.fluid} />
+      </ImgContainer>
       <div css={css`
         display: flex;
         justify-content: space-between;
@@ -81,7 +100,7 @@ const ProductCard = ({ product }) => {
       </div>
       <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
       <AddToCartButton>Add to cart</AddToCartButton>
-    </>
+    </CardContainer>
   )
 }
 const Shop = ({ data }) => {
@@ -126,6 +145,9 @@ export const shopPageQuery = graphql`
           image {
             fluid(maxHeight: 600 maxWidth: 600) {
               ...GatsbyContentfulFluid_withWebp
+            }
+            fixed(width: 400 height: 400) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
           description {
