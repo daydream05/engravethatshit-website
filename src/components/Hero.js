@@ -11,6 +11,7 @@ const Content = styled.div `
   justify-content: center;
   flex-direction: column;
   padding: 0 18px;
+  margin-top: 3rem;
 
   ${media.desktop`
     max-width: 450px;
@@ -49,6 +50,12 @@ const ShopButton = styled(Link)`
   align-items: center;
 `
 const ImgContainer = styled.div`
+  height: 50%;
+  
+  ${media.desktop`
+    height: inherit;
+    padding: ${props => `${props.theme.sizes.headerHeight} 0 ${props.theme.sizes.headerHeight}`};
+  `}
 `
 const Hero = props => {
   const { image } = props

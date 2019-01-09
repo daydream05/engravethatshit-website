@@ -1,5 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
+import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import { media } from '../../utils/media'
@@ -54,6 +55,7 @@ const ImgContainer = styled.div`
 const ProductCard = ({ product }) => {
   return (
     <CardContainer>
+      <Link to={product.fields.path}>
       <ImgContainer>
         <Img fluid={product.image.fluid} />
       </ImgContainer>
@@ -68,6 +70,7 @@ const ProductCard = ({ product }) => {
         <ProductPrice>${product.price}</ProductPrice>
       </div>
       <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
+      </Link>
       <AddToCartButton>Add to cart</AddToCartButton>
     </CardContainer>
   )

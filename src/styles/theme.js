@@ -8,7 +8,8 @@ const theme = {
   headerHeight: '64px',
   sizes: {
     maxWidth: '1200px',
-    containerPadding: '128px'
+    containerPadding: '128px',
+    headerHeight: '64px',
   }
 }
 

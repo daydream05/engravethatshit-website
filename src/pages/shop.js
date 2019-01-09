@@ -90,6 +90,9 @@ export const shopPageQuery = graphql`
             }
           }
           price
+          fields {
+            path
+          }
         }
       }
     }
