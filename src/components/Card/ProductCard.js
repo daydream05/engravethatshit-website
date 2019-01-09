@@ -5,6 +5,8 @@ import styled, { css } from 'styled-components'
 
 import { media } from '../../utils/media'
 
+import { UnstyledLink } from '../StyledComponents'
+
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,9 +30,9 @@ const ProductPrice = styled.span`
 const ProductDescription = styled.div`
   font-size: 16px;
   color: ${props => props.theme.colors.darkGray};
-  margin-bottom: 2rem;
-  flex: 1;
-  
+  &&& {
+    margin-bottom: 2rem;
+  }
 `
 
 const AddToCartButton = styled.a`
@@ -44,6 +46,13 @@ const AddToCartButton = styled.a`
   font-size: 18px;
   cursor: pointer;
   padding: 0 2rem;
+  justify-self: flex-end;
+  transition-duration: 200ms;
+
+  :hover {
+    background-color: #440B6F;
+    transition-duration: 200ms;
+  }
 `
 
 const ImgContainer = styled.div`
@@ -55,22 +64,22 @@ const ImgContainer = styled.div`
 const ProductCard = ({ product }) => {
   return (
     <CardContainer>
-      <Link to={product.fields.path}>
-      <ImgContainer>
-        <Img fluid={product.image.fluid} />
-      </ImgContainer>
-      <div css={css`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-      `}>
-        <ProductName>{product.name}</ProductName>
-        <ProductPrice>${product.price}</ProductPrice>
-      </div>
-      <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
-      </Link>
+      <UnstyledLink to={product.fields.path} css={css`flex: 1;`}>
+        <ImgContainer>
+          <Img fluid={product.image.fluid} />
+        </ImgContainer>
+          <div css={css`
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+          `}>
+            <ProductName>{product.name}</ProductName>
+            <ProductPrice>${product.price}</ProductPrice>
+          </div>
+        <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
+      </UnstyledLink>
       <AddToCartButton>Add to cart</AddToCartButton>
     </CardContainer>
   )

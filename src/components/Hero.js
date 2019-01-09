@@ -48,6 +48,12 @@ const ShopButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: 200ms;
+
+  :hover {
+    background-color: #440B6F;
+    transition-duration: 200ms;
+  }
 `
 const ImgContainer = styled.div`
   height: 50%;
