@@ -1,9 +1,11 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
 
 import { media } from '../../utils/media'
+
+import SnipcartButton from '../../components/SnipcartButton'
 
 import { UnstyledLink } from '../StyledComponents'
 
@@ -37,26 +39,6 @@ const ProductDescription = styled.div`
   }
 `
 
-const AddToCartButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background-color: ${props => props.theme.colors.primary};;
-  height: 64px;
-  color: ${props => props.theme.colors.white};
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 2rem;
-  justify-self: flex-end;
-  transition-duration: 200ms;
-
-  :hover {
-    background-color: #440B6F;
-    transition-duration: 200ms;
-  }
-`
-
 const ImgContainer = styled.div`
   ${media.desktop`
     width: 400px;
@@ -82,36 +64,15 @@ const ProductCard = ({ product }) => {
           </div>
         <ProductDescription>{product.description.childMarkdownRemark.excerpt}</ProductDescription>
       </UnstyledLink>
-      <StaticQuery
-        query={siteQuery}
-        render={data => {
-          const { siteUrl } = data.site.siteMetadata
-          return (
-            <AddToCartButton
-              className="snipcart-add-item"
-              data-item-id={product.id}
-              data-item-name={product.name}
-              data-item-price={product.price}
-              data-item-url={`${siteUrl}/shop/`}
-              data-item-custom1-name="Website/App URL"
-              data-item-custom1-required="true"
-            >Add to cart</AddToCartButton>
-          )
-        }}
-      />
-
+          <SnipcartButton
+            className="snipcart-add-item"
+            url={product.fields.path}
+            data-item-id={product.id}
+            data-item-name={product.name}
+            data-item-price={product.price}
+          >Add to cart</SnipcartButton>
     </CardContainer>
   )
 }
-
-const siteQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`
 
 export default ProductCard

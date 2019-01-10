@@ -3,18 +3,14 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
-import { setConfig } from 'react-hot-loader'
-
 import { media } from '../utils/media'
 
 import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
+import SnipcartButton from '../components/SnipcartButton'
 
 import { Section } from '../components/StyledComponents'
 import SEO from '../components/SEO'
-
-// not sure what this does
-setConfig({ pureSFC: true })
 
 const ProductTitle = styled.h1`
   text-align: center;
@@ -59,25 +55,7 @@ const QuantityTitle = styled.div`
   font-size: 24px;
 `
 
-const AddToCartButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background-color: ${props => props.theme.colors.primary};;
-  height: 64px;
-  color: ${props => props.theme.colors.white};
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 2rem;
-  justify-self: flex-end;
-  transition-duration: 200ms;
-
-  :hover {
-    background-color: #440B6F;
-    transition-duration: 200ms;
-  }
-`
+const AddToCartButton = styled(SnipcartButton)``
 
 const BuyItNowButton = styled(AddToCartButton)`
   background-color: ${props => props.theme.colors.black};
@@ -152,25 +130,20 @@ const ProductTemplate = ({ data }) => {
               <a href="https://twitter.com/vince_parulan" target="_blank" rel="noopener noreferrer"> Twitter</a>
             </span>
             <ButtonGroup>
-              <AddToCartButton
+              <SnipcartButton
                 className="snipcart-add-item"
                 data-item-id={id}
                 data-item-name={name}
                 data-item-price={price}
                 data-item-quantity={`${quantity}`}
-                data-item-url={`${siteUrl}/${fields.path}`}
-                data-item-custom1-name="Website/App URL"
-                data-item-custom1-required="true"
-              >Add to cart</AddToCartButton>
+              >Add to cart</SnipcartButton>
               <BuyItNowButton
                 className="snipcart-add-item"
                 data-item-id={id}
                 data-item-name={name}
                 data-item-price={price}
                 data-item-quantity="1"
-                data-item-url={`${siteUrl}/${fields.path}`}
-                data-item-custom1-name="Website/App URL"
-                data-item-custom1-required="true"
+                url={fields.path}
               >Buy it now</BuyItNowButton>
             </ButtonGroup>
           </div>
