@@ -148,7 +148,9 @@ const ProductTemplate = ({ data }) => {
               margin-bottom: 2rem;
               opacity: 0.8;
               font-size: 16px;
-            `}>Looking to buy in bulk? Shoot us an email!</span>
+            `}>Looking to buy in bulk? Shoot me a DM on
+              <a href="https://twitter.com/vince_parulan" target="_blank" rel="noopener noreferrer"> Twitter</a>
+            </span>
             <ButtonGroup>
               <AddToCartButton
                 className="snipcart-add-item"
