@@ -87,6 +87,7 @@ export const shopPageQuery = graphql`
           description {
             childMarkdownRemark {
               html
+              excerpt
             }
           }
           price

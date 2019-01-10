@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
             <ProductName>{product.name}</ProductName>
             <ProductPrice>${product.price}</ProductPrice>
           </div>
-        <ProductDescription dangerouslySetInnerHTML={{ __html: product.description.childMarkdownRemark.html }} />
+        <ProductDescription>{product.description.childMarkdownRemark.excerpt}</ProductDescription>
       </UnstyledLink>
       <StaticQuery
         query={siteQuery}
