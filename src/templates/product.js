@@ -85,8 +85,6 @@ const ProductTemplate = ({ data }) => {
     description,
   } = data.contentfulProduct
 
-  const { siteUrl } = data.site.siteMetadata
-
   const [quantity, setQuantity] = useState(1)
 
   return (
@@ -136,15 +134,25 @@ const ProductTemplate = ({ data }) => {
                 data-item-name={name}
                 data-item-price={price}
                 data-item-quantity={`${quantity}`}
+                css={css`
+                  background-color: ${props => props.theme.colors.white};
+                  color: ${props => props.theme.colors.primary};
+                  border: 2px solid ${props => props.theme.colors.primary};
+
+                  :hover {
+                    background-color: unset;
+                    color: ${props => props.theme.colors.primary};
+                  }
+                `}
               >Add to cart</SnipcartButton>
-              <BuyItNowButton
+              <SnipcartButton
                 className="snipcart-add-item"
                 data-item-id={id}
                 data-item-name={name}
                 data-item-price={price}
                 data-item-quantity="1"
                 url={fields.path}
-              >Buy it now</BuyItNowButton>
+              >Buy it now</SnipcartButton>
             </ButtonGroup>
           </div>
         </div>
