@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
@@ -28,6 +28,22 @@ const FeatureDescription = styled.p`
   color: #d2d2d2;
   margin-bottom: 3rem;
 `
+
+const ShopButton = styled(Link)`
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.primary};
+  height: 64px;
+  border-radius: 4px;
+  width: 200px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 200ms;
+`
+
 const IndexPage = ({ data }) => {
 
   const { ledProduct, woodProduct } = data
@@ -48,6 +64,7 @@ const IndexPage = ({ data }) => {
       <Section
         fullPage
         css={css`
+          background-color: rgb(111, 47, 160);
           ${media.desktop`
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -96,6 +113,7 @@ const IndexPage = ({ data }) => {
               <FeatureTitle>Multi-color LED</FeatureTitle>
               <FeatureDescription>In case your team realizes “Facebook  Blue” is out and “Spotify Green” is in.<br/><br/>(Sorry we don't do gradients)</FeatureDescription>
             </div>
+            <ShopButton to="/shop/" css={css`margin: auto;`}>Shop now</ShopButton>
           </div>
         </FeaturesContainer>
       </Section>

@@ -39,7 +39,7 @@ const HeroSubTitle = styled.p`
 const ShopButton = styled(Link)`
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
-  height: 48px;
+  height: 64px;
   border-radius: 4px;
   width: 200px;
   cursor: pointer;
