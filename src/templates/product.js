@@ -11,6 +11,7 @@ import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 
 import { Section } from '../components/StyledComponents'
+import SEO from '../components/SEO'
 
 // not sure what this does
 setConfig({ pureSFC: true })
@@ -37,6 +38,7 @@ const Price = styled.span`
 
   ${media.desktop`
     font-size: 48px;
+    margin-top: 0;
   `}
 `
 
@@ -63,7 +65,7 @@ const AddToCartButton = styled.button`
   align-items: center;
   border-radius: 4px;
   background-color: ${props => props.theme.colors.primary};;
-  height: 48px;
+  height: 64px;
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   cursor: pointer;
@@ -111,6 +113,7 @@ const ProductTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title={name} />
       <Section
         css={css`
           padding: 88px 16px;

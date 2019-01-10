@@ -43,7 +43,7 @@ const Shop = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Page two" />
+      <SEO title="Shop" />
       <Section
         css={css`
           display: flex;

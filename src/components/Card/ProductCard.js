@@ -43,7 +43,7 @@ const AddToCartButton = styled.a`
   align-items: center;
   border-radius: 4px;
   background-color: ${props => props.theme.colors.primary};;
-  height: 48px;
+  height: 64px;
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   cursor: pointer;
