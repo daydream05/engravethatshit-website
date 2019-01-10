@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 const SubtractButton = styled.button`
@@ -23,95 +23,83 @@ const AddButton = styled.button`
   cursor: pointer;
 `
 
-class QuantitySelector extends Component {
-  state = {
-    quantity: 1,
-  }
+const QuantitySelector = (props) => {
+  const [quantity, setQuantity] = useState(1)
 
-  addQuantity = (event) => {
-    event.preventDefault()
-    this.setState({ quantity: this.state.quantity + 1 })
+  const addQuantity = (e) => {
+    e.preventDefault()
+    setQuantity(quantity + 1)
 
-    if (this.props.onQuantityChange) {
-      this.props.onQuantityChange(this.state.quantity + 1)
+    if(props.onQuantityChange) {
+      props.onQuantityChange(quantity + 1)
     }
   }
 
-  subtractQuantity = (event) => {
-    event.preventDefault()
+  const subtractQuantity = (e) => {
+    e.preventDefault()
 
-    if(this.state.quantity > 1) {
-      this.setState({ quantity: this.state.quantity - 1 })
-
-      if (this.props.onQuantityChange) {
-        this.props.onQuantityChange(this.state.quantity - 1)
+    // prevent quantity from going to 0 or less
+    if(quantity > 1) {
+      setQuantity(quantity - 1)
+      if (props.onQuantityChange) {
+        props.onQuantityChange(quantity - 1)
       }
     }
   }
 
-  handleQuantityChange = event => {
-    const target = event.target
-    let quantity
+  const handleQuantityChange = (e) => {
+    const { value } = e.target
+    const newValue = parseInt(value, 10)
 
-    if (target.value >= 0) {
-      quantity = target.value
-      this.setState({
-        quantity,
-      })
+    // prevent quantty from to 0 or less
+    if(newValue > 1) {
+      setQuantity(newValue)
+      props.onQuantityChange(newValue)
     } else {
-      quantity = 1
-      this.setState({
-        quantity
-      })
-    }
-
-    if (this.props.onQuantityChange) {
-      this.props.onQuantityChange(quantity)
+      // if 0 or less, set it to 1
+      setQuantity(1)
+      props.onQuantityChange(1)
     }
   }
 
-  
+  return (
+    <form css={css`
+      display: grid;
+      grid-template-columns: 40px 60px 40px;
+      height: 40px;
+      margin: 0;
 
-  render() {
-    return (
-      <form css={css`
-        display: grid;
-        grid-template-columns: 40px 60px 40px;
-        height: 40px;
-        margin: 0;
+      input[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+    `}>
+      <SubtractButton
+        aria-label="subract"
+        onClick={subtractQuantity}>-</SubtractButton>
+      <input
+        name="quantity"
+        type="number"
+        value={quantity}
+        onChange={handleQuantityChange}
+        css={css`
+          text-align: center;
+          border: 2px solid #4A4A4A;
+          padding: 0;
+          background-color: #EDEDED;
 
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-      `}>
-        <SubtractButton
-          aria-label="subract"
-          onClick={this.subtractQuantity}>-</SubtractButton>
-        <input
-          name="quantity"
-          type="number"
-          value={this.state.quantity}
-          onChange={this.handleQuantityChange}
-          css={css`
-            text-align: center;
-            border: 2px solid #4A4A4A;
-            padding: 0;
-            background-color: #EDEDED;
-
-            ::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button { 
-              -webkit-appearance: none; 
-              margin: 3rem; 
-            }
-          `}
-        />
-        <AddButton
-          aria-label="add"
-          onClick={this.addQuantity}>+</AddButton>
-      </form>
-    )
-  }
+          ::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button { 
+            -webkit-appearance: none; 
+            margin: 3rem; 
+          }
+        `}
+      />
+      <AddButton
+        aria-label="add"
+        onClick={addQuantity}>+</AddButton>
+    </form>
+  )
 }
 
 export default QuantitySelector
