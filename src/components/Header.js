@@ -8,7 +8,9 @@ import { media } from '../utils/media'
 
 const Nav = styled.nav`
   height: ${props => props.theme.headerHeight};
-  position: absolute;
+  position: fixed;
+  background-color: ${props => props.theme.colors.white};
+  z-index: 100;
   width: 100%;
   border-bottom: 1px solid #f5f3f7;
   display: flex;
