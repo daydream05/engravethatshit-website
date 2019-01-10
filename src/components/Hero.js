@@ -69,7 +69,7 @@ const Hero = props => {
     <Section
       fullPage
       css={css`
-        padding: 16px;
+        padding: 64px 16px;
         display: flex;
         flex-direction: column-reverse;
         justify-content: center;

@@ -28,11 +28,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 18px;
   width: 100%;
 
   ${media.desktop`
-    max-width: ${props => props.theme.sizes.maxWidth};
+    padding: 16px;
     margin: auto;
   `}
 `
@@ -40,6 +40,7 @@ const Container = styled.div`
 const Cart = styled.button`
   border: none;
   cursor: pointer;
+  background-color: unset;
 `
 const Header = ({ siteTitle }) => (
   <Nav>

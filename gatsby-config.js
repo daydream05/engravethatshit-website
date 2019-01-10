@@ -4,7 +4,7 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require("dotenv").config({path: `.env.${activeEnv}`})
 
-const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://engravethatshit.netlify.com/' 
+const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://engravethatshit.com/' 
 
 module.exports = {
   siteMetadata: {
@@ -12,7 +12,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     titleTemplate: '',
-    url: `https://engravethatshit.netlify.com/`,
+    url: `https://engravethatshit.com/`,
     siteUrl,
     twitterUsername: `@engravethatshit`,
     image: `/images/gatsby-astronaut.png`,

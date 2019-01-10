@@ -1,8 +1,11 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
+import { media } from '../utils/media'
 export const Section = styled.section`
-  height: ${props => props.fullPage ? `100vh` : null};
+  ${media.desktop`
+    height: ${props => props.fullPage ? `100vh` : null};
+  `}
 `
 
 export const UnstyledLink = styled(Link)`
