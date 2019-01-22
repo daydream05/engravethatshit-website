@@ -26,6 +26,7 @@ const ProductList = styled.ul`
     padding: 64px;
     max-width: 1200px;
     justify-content: space-around;
+    flex-wrap: wrap;
   `}
 `
 
@@ -34,6 +35,7 @@ const ListItem = styled.li`
 
   ${media.desktop`
     margin-bottom: none;
+    max-width: 300px;
   `}
 `
 
@@ -77,10 +79,10 @@ export const shopPageQuery = graphql`
           name
           id
           image {
-            fluid(maxHeight: 600 maxWidth: 600) {
+            fluid(maxHeight: 400 maxWidth: 400, quality: 100) {
               ...GatsbyContentfulFluid_withWebp
             }
-            fixed(width: 400 height: 400) {
+            fixed(width: 300 height: 300) {
               ...GatsbyContentfulFixed_withWebp
             }
           }

@@ -9,33 +9,24 @@ import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 import SnipcartButton from '../components/SnipcartButton'
 
-import { Section } from '../components/StyledComponents'
 import SEO from '../components/SEO'
 
 const ProductTitle = styled.h1`
-  text-align: center;
-  ${media.desktop`
-    margin-bottom: 4rem;
-  `}
+  margin-bottom: 0.5rem;
 `
 
 const Container = styled.div`
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
+  padding-top: 55px;
 `
 
 const Price = styled.span`
   font-weight: bold;
-  font-size: 24px;
+  font-size: 1.2rem;
   color: ${props => props.theme.colors.primary};
   margin-bottom: 2rem;
-  margin-top: 1rem;
   display: block;
-
-  ${media.desktop`
-    font-size: 48px;
-    margin-top: 0;
-  `}
 `
 
 const Description = styled.div`
@@ -69,10 +60,15 @@ const BuyItNowButton = styled(AddToCartButton)`
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 3rem;
 
   > :first-child {
     margin-bottom: 0.5rem;
   }
+`
+
+const ProductImg = styled(Img)`
+  
 `
 
 const ProductTemplate = ({ data }) => {
@@ -90,51 +86,38 @@ const ProductTemplate = ({ data }) => {
   return (
     <Layout>
       <SEO title={name} />
-      <Section
+      <main
         css={css`
           padding: 88px 16px;
         `}
       >
-      <Container>
-        <ProductTitle>{name}</ProductTitle>
-        <div
-          css={css`
-          padding: 16px;
-          ${media.desktop`
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 80px;
-            padding: 0;
-          `}
-        `}>
-          <Img fluid={image.fluid} alt={image.title} />
-          <div css={css`
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        <Container>
+          <div
+            css={css`
+            padding: 16px;
+            ${media.desktop`
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              grid-gap: 80px;
+              padding: 0;
+            `}
           `}>
-            <Price>${price}</Price>
-            <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }}/>
-            <QuantityGroup>
-              <QuantityTitle>Quantity</QuantityTitle>
-              <QuantitySelector onQuantityChange={setQuantity}/>
-            </QuantityGroup>
-            <span css={css`
-              font-style: italic;
-              margin-bottom: 2rem;
-              opacity: 0.8;
-              font-size: 16px;
-            `}>Looking to buy in bulk? Shoot me a DM on
-              <a href="https://twitter.com/vince_parulan" target="_blank" rel="noopener noreferrer"> Twitter</a>
-            </span>
-            <ButtonGroup>
-              <SnipcartButton
-                className="snipcart-add-item"
-                data-item-id={id}
-                data-item-name={name}
-                data-item-price={price}
-                data-item-quantity={`${quantity}`}
-                css={css`
+            <ProductImg fluid={image.fluid} alt={image.title} />
+            <div>
+              <ProductTitle>{name}</ProductTitle>
+              <Price>${price}</Price>
+              <QuantityGroup>
+                <QuantityTitle>Quantity</QuantityTitle>
+                <QuantitySelector onQuantityChange={setQuantity} />
+              </QuantityGroup>
+              <ButtonGroup>
+                <SnipcartButton
+                  className="snipcart-add-item"
+                  data-item-id={id}
+                  data-item-name={name}
+                  data-item-price={price}
+                  data-item-quantity={`${quantity}`}
+                  css={css`
                   background-color: ${props => props.theme.colors.white};
                   color: ${props => props.theme.colors.primary};
                   border: 2px solid ${props => props.theme.colors.primary};
@@ -144,20 +127,29 @@ const ProductTemplate = ({ data }) => {
                     color: ${props => props.theme.colors.primary};
                   }
                 `}
-              >Add to cart</SnipcartButton>
-              <SnipcartButton
-                className="snipcart-add-item"
-                data-item-id={id}
-                data-item-name={name}
-                data-item-price={price}
-                data-item-quantity="1"
-                url={fields.path}
-              >Buy it now</SnipcartButton>
-            </ButtonGroup>
+                >Add to cart</SnipcartButton>
+                <SnipcartButton
+                  className="snipcart-add-item"
+                  data-item-id={id}
+                  data-item-name={name}
+                  data-item-price={price}
+                  data-item-quantity="1"
+                  url={fields.path}
+                >Buy it now</SnipcartButton>
+              </ButtonGroup>
+              <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }}/>
+              <span css={css`
+                font-style: italic;
+                margin-bottom: 2rem;
+                opacity: 0.8;
+                font-size: 16px;
+              `}>Looking to buy in bulk? Shoot me a DM on
+                <a href="https://twitter.com/vince_parulan" target="_blank" rel="noopener noreferrer"> Twitter</a>
+              </span>
+            </div>
           </div>
-        </div>
-      </Container>
-      </Section>
+        </Container>
+      </main>
     </Layout>
   )
 }
@@ -180,8 +172,11 @@ export const productTemplateQuery = graphql`
       }
       image {
         title
-        fluid(maxHeight: 400 maxWidth: 400) {
+        fluid(maxHeight: 600 maxWidth: 600, quality: 100) {
           ...GatsbyContentfulFluid_withWebp
+        }
+        fixed(height: 600 width: 600, quality: 100) {
+          ...GatsbyContentfulFixed_withWebp
         }
       }
     }

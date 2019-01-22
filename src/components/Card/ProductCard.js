@@ -14,8 +14,8 @@ import { UnstyledLink } from '../StyledComponents'
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 400px;
   height: 100%;
+  width: 100%;
   margin: auto;
 `
 const ProductName = styled.h3`
@@ -29,6 +29,7 @@ const ProductPrice = styled.span`
   font-weight: bold;
   color: ${props => props.theme.colors.primary};
   font-size: 24px;
+  margin-left: 3rem;
 `
 
 const ProductDescription = styled.div`
@@ -39,19 +40,11 @@ const ProductDescription = styled.div`
   }
 `
 
-const ImgContainer = styled.div`
-  ${media.desktop`
-    width: 400px;
-    height: 400px;
-  `}
-`
 const ProductCard = ({ product }) => {
   return (
     <CardContainer>
       <UnstyledLink to={product.fields.path} css={css`flex: 1;`}>
-        <ImgContainer>
           <Img fluid={product.image.fluid} />
-        </ImgContainer>
           <div css={css`
             display: flex;
             justify-content: space-between;
