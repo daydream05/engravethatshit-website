@@ -13,6 +13,7 @@ import SEO from '../components/SEO'
 
 const ProductTitle = styled.h1`
   margin-bottom: 0.5rem;
+  font-weight: 600;
 `
 
 const Container = styled.div`
@@ -22,9 +23,10 @@ const Container = styled.div`
 `
 
 const Price = styled.span`
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.2rem;
   color: ${props => props.theme.colors.primary};
+  opacity: 0.7;
   margin-bottom: 2rem;
   display: block;
 `

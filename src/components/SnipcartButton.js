@@ -8,19 +8,13 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  background-color: ${props => props.theme.colors.primary};;
+  background-color: ${props => props.theme.colors.primary};
   height: 64px;
   color: ${props => props.theme.colors.white};
   font-size: 18px;
   cursor: pointer;
   padding: 0 2rem;
   justify-self: flex-end;
-  transition-duration: 200ms;
-
-  :hover {
-    background-color: #440B6F;
-    transition-duration: 200ms;
-  }
 `
 
 // The purpose of this function is to make it easier to append the siteUrl
