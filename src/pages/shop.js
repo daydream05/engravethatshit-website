@@ -9,9 +9,12 @@ import SEO from '../components/SEO'
 
 import { ProductCard } from '../components/Card'
 
-import { Section } from '../components/StyledComponents'
-
 const PageTitle = styled.h1`
+  margin-bottom: 3rem;
+
+  ${media.desktop`
+    margin: 4rem 0;
+  `}
 `
 
 const ProductList = styled.ul`
@@ -22,20 +25,22 @@ const ProductList = styled.ul`
   width: 100%;
 
   ${media.desktop`
-    flex-direction: row;
-    padding: 64px;
-    max-width: 1200px;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    max-width: ${props => props.theme.sizes.maxWidth};
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  `}
+
+  ${media.hd`
+    grid-template-columns: repeat(4, 1fr);
   `}
 `
 
 const ListItem = styled.li`
-  margin-bottom: 4rem;
-
+  margin-bottom: 3rem;
   ${media.desktop`
-    margin-bottom: none;
-    max-width: 300px;
+    margin-bottom: 0;
   `}
 `
 
@@ -46,7 +51,7 @@ const Shop = ({ data }) => {
   return (
     <Layout>
       <SEO title="Shop" />
-      <Section
+      <main
         css={css`
           display: flex;
           flex-direction: column;
@@ -55,7 +60,7 @@ const Shop = ({ data }) => {
           padding: 88px 16px;
         `}
       >
-        <PageTitle>Shop</PageTitle>
+        <PageTitle>Products</PageTitle>
         <ProductList>
           {products.map(({ node }) => {
             return (
@@ -65,7 +70,7 @@ const Shop = ({ data }) => {
             )
           })}
         </ProductList>
-      </Section>
+      </main>
     </Layout>
   )
 }

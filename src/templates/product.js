@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 
 import { media } from '../utils/media'
 
+import { Section } from '../components/StyledComponents'
 import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 import SnipcartButton from '../components/SnipcartButton'
@@ -34,7 +35,7 @@ const Price = styled.span`
 const Description = styled.div`
   font-family: 600;
   font-size: 18px;
-  color: #4A4A4A;
+  color: ${props => props.theme.colors.lightGray};
   letter-spacing: 0;
 `
 
@@ -93,7 +94,8 @@ const ProductTemplate = ({ data }) => {
           padding: 88px 16px;
         `}
       >
-        <Container>
+      <Container>
+        <Section>
           <div
             css={css`
             padding: 16px;
@@ -120,15 +122,15 @@ const ProductTemplate = ({ data }) => {
                   data-item-price={price}
                   data-item-quantity={`${quantity}`}
                   css={css`
-                  background-color: ${props => props.theme.colors.white};
-                  color: ${props => props.theme.colors.primary};
-                  border: 2px solid ${props => props.theme.colors.primary};
+                background-color: ${props => props.theme.colors.white};
+                color: ${props => props.theme.colors.primary};
+                border: 2px solid ${props => props.theme.colors.primary};
 
-                  :hover {
-                    background-color: unset;
-                    color: ${props => props.theme.colors.primary};
-                  }
-                `}
+                :hover {
+                  background-color: unset;
+                  color: ${props => props.theme.colors.primary};
+                }
+              `}
                 >Add to cart</SnipcartButton>
                 <SnipcartButton
                   className="snipcart-add-item"
@@ -139,18 +141,47 @@ const ProductTemplate = ({ data }) => {
                   url={fields.path}
                 >Buy it now</SnipcartButton>
               </ButtonGroup>
-              <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }}/>
-              <span css={css`
-                font-style: italic;
-                margin-bottom: 2rem;
-                opacity: 0.8;
-                font-size: 16px;
-              `}>Looking to buy in bulk? Shoot me a DM on
-                <a href="https://twitter.com/vince_parulan" target="_blank" rel="noopener noreferrer"> Twitter</a>
-              </span>
+              <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
             </div>
           </div>
-        </Container>
+        </Section>
+        <Section
+          css={css`padding: 2rem 0;`}
+        >
+          <h2 css={css`
+            font-size: 1rem;
+            font-weight: 600;
+          `}>AI approved™ products just for you</h2>
+        </Section>
+        <Section
+          css={css`
+            padding: 5rem 0;
+          `}
+        >
+          <h2 css={css`
+            text-align: center;
+          `}>How it works</h2>
+          <ol>
+            <li>Send us a link to your file</li>
+            <li>We'll create a sample</li>
+            <li>We'll deliver it to your doorstep</li>
+          </ol>
+        </Section>
+        <Section
+          css={css`
+            padding: 5rem 0;
+          `}
+        >
+          <h2 css={css`
+            text-align: center;
+          `}>Frequently Asked Questions</h2>
+          <ol>
+            <li>Send us a link to your file</li>
+            <li>We'll create a sample</li>
+            <li>We'll deliver it to your doorstep</li>
+          </ol>
+        </Section>
+      </Container>
       </main>
     </Layout>
   )
