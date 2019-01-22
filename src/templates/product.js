@@ -11,6 +11,7 @@ import QuantitySelector from '../components/QuantitySelector'
 import SnipcartButton from '../components/SnipcartButton'
 
 import SEO from '../components/SEO'
+import { ProductCard } from '../components/Card';
 
 const ProductTitle = styled.h1`
   margin-bottom: 0.5rem;
@@ -49,17 +50,6 @@ const QuantityTitle = styled.div`
   font-size: 24px;
 `
 
-const AddToCartButton = styled(SnipcartButton)``
-
-const BuyItNowButton = styled(AddToCartButton)`
-  background-color: ${props => props.theme.colors.black};
-
-  :hover {
-    background-color: rgba(0,0,0,.9);
-    transition-duration: 200ms;
-  }
-`
-
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -70,8 +60,12 @@ const ButtonGroup = styled.div`
   }
 `
 
-const ProductImg = styled(Img)`
-  
+const RelatedProductsList = styled.ol`
+  display: grid;
+  grid-template-columns: repeat(6, 200px);
+  grid-gap: 2rem;
+  list-style: none;
+  border-top-width: 2px;
 `
 
 const ProductTemplate = ({ data }) => {
@@ -82,6 +76,7 @@ const ProductTemplate = ({ data }) => {
     price,
     fields,
     description,
+    relatedProducts,
   } = data.contentfulProduct
 
   const [quantity, setQuantity] = useState(1)
@@ -106,7 +101,7 @@ const ProductTemplate = ({ data }) => {
               padding: 0;
             `}
           `}>
-            <ProductImg fluid={image.fluid} alt={image.title} />
+            <Img fluid={image.fluid} alt={image.title} />
             <div>
               <ProductTitle>{name}</ProductTitle>
               <Price>${price}</Price>
@@ -122,14 +117,14 @@ const ProductTemplate = ({ data }) => {
                   data-item-price={price}
                   data-item-quantity={`${quantity}`}
                   css={css`
-                background-color: ${props => props.theme.colors.white};
-                color: ${props => props.theme.colors.primary};
-                border: 2px solid ${props => props.theme.colors.primary};
-
-                :hover {
-                  background-color: unset;
+                  background-color: ${props => props.theme.colors.white};
                   color: ${props => props.theme.colors.primary};
-                }
+                  border: 2px solid ${props => props.theme.colors.primary};
+
+                  :hover {
+                    background-color: unset;
+                    color: ${props => props.theme.colors.primary};
+                  }
               `}
                 >Add to cart</SnipcartButton>
                 <SnipcartButton
@@ -145,14 +140,28 @@ const ProductTemplate = ({ data }) => {
             </div>
           </div>
         </Section>
+        {relatedProducts &&
         <Section
           css={css`padding: 2rem 0;`}
         >
+          <hr />
           <h2 css={css`
             font-size: 1rem;
             font-weight: 600;
-          `}>AI approved™ products just for you</h2>
-        </Section>
+          `}>AI recommended™ products just for you</h2>
+          <RelatedProductsList>
+            {relatedProducts.map(product => {
+              return (
+                <li key={product.id}>
+                  <ProductCard
+                    product={product}
+                  />
+                </li>
+              )
+            })}
+          </RelatedProductsList>
+          <hr />
+        </Section>}
         <Section
           css={css`
             padding: 5rem 0;
@@ -211,6 +220,9 @@ export const productTemplateQuery = graphql`
         fixed(height: 600 width: 600, quality: 100) {
           ...GatsbyContentfulFixed_withWebp
         }
+      }
+      relatedProducts {
+        ...ProductCardFragment
       }
     }
     site {

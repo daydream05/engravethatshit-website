@@ -1,12 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
-
-import { media } from '../../utils/media'
-
-import SnipcartButton from '../../components/SnipcartButton'
-
-import { UnstyledLink } from '../StyledComponents'
 
 // TODO: refactor add to cart button to take in button url
 
@@ -31,20 +27,62 @@ const ProductPrice = styled.span`
 `
 
 const ProductCard = ({ product }) => {
+  const { fields, image, name, price } = product
   return (
     <CardContainer>
-      <UnstyledLink to={product.fields.path} css={css`flex: 1;`}>
-          <Img fluid={product.image.fluid} />
+      <Link to={fields.path} css={css`
+        flex: 1;
+        text-decoration: none;
+        transition-duration: 200ms;
+
+        :hover {
+          transition-property: text-decoration;
+          text-decoration: underline;
+          color: inherit;
+        }
+      `}>
+          <Img fluid={image.fluid} />
           <div css={css`
             margin-top: 1rem;
             margin-bottom: 1rem;
           `}>
-            <ProductName>{product.name}</ProductName>
-            <ProductPrice>${product.price}</ProductPrice>
+            <ProductName>{name}</ProductName>
+            <ProductPrice>${price}</ProductPrice>
           </div>
-      </UnstyledLink>
+      </Link>
     </CardContainer>
   )
 }
 
 export default ProductCard
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string,
+    fields: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+    }),
+    image: PropTypes.shape({
+      fluid: PropTypes.object,
+    }),
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+  })
+}
+
+// Fragment that the global graphql can use
+export const productCardFragment = graphql`
+  fragment ProductCardFragment on ContentfulProduct {
+    id
+    fields {
+      path
+    }
+    image { 
+      fluid(maxHeight: 400 maxWidth: 400, quality: 100) {
+        ...GatsbyContentfulFluid_withWebp
+      }
+    }
+    name
+    price
+  }
+`
