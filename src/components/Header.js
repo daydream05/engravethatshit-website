@@ -57,6 +57,14 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </NavLink>
       </span>
+      <div>
+        <span css={css`margin-right: 1rem;`}>
+          <NavLink to="/">Home</NavLink>
+        </span>
+        <span>
+          <NavLink to="/shop/">Products</NavLink>
+        </span>
+      </div>
       <Cart
         className="snipcart-checkout"
         aria-label="shopping cart"

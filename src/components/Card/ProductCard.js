@@ -66,7 +66,7 @@ ProductCard.propTypes = {
       fluid: PropTypes.object,
     }),
     name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   })
 }
 

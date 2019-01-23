@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
 import { media } from '../utils/media'
@@ -12,6 +11,7 @@ import SnipcartButton from '../components/SnipcartButton'
 
 import SEO from '../components/SEO'
 import { ProductCard } from '../components/Card';
+import ProductImagesDesktop from '../components/ProductImagesDesktop'
 
 const ProductTitle = styled.h1`
   margin-bottom: 0.5rem;
@@ -21,7 +21,10 @@ const ProductTitle = styled.h1`
 const Container = styled.div`
   max-width: 1200px;
   margin: auto;
-  padding-top: 55px;
+
+  ${media.desktop`
+    padding-top: 5rem;
+  `}
 `
 
 const Price = styled.span`
@@ -61,21 +64,25 @@ const ButtonGroup = styled.div`
 `
 
 const RelatedProductsList = styled.ol`
-  display: grid;
-  grid-template-columns: repeat(6, 200px);
-  grid-gap: 2rem;
+  display: flex;
   list-style: none;
-  border-top-width: 2px;
+  overflow-x: scroll;
+  overflow: auto;
+`
+
+const RelatedProductsListItem = styled.li`
+  margin-right: 3rem;
+  min-width: 200px;
 `
 
 const ProductTemplate = ({ data }) => {
   const {
     name,
-    image,
     id,
     price,
     fields,
     description,
+    images,
     relatedProducts,
   } = data.contentfulProduct
 
@@ -94,14 +101,18 @@ const ProductTemplate = ({ data }) => {
           <div
             css={css`
             padding: 16px;
+            display: flex;
+            flex-direction: column;
+
             ${media.desktop`
-              display: grid;
+              display: inline-grid;
               grid-template-columns: 1fr 1fr;
-              grid-gap: 80px;
-              padding: 0;
+              grid-gap: 2rem;
             `}
           `}>
-            <Img fluid={image.fluid} alt={image.title} />
+            <div>
+              {images && <ProductImagesDesktop images={images} css={css`margin-bottom: 2rem;`}/>}
+            </div>
             <div>
               <ProductTitle>{name}</ProductTitle>
               <Price>${price}</Price>
@@ -152,11 +163,11 @@ const ProductTemplate = ({ data }) => {
           <RelatedProductsList>
             {relatedProducts.map(product => {
               return (
-                <li key={product.id}>
+                <RelatedProductsListItem key={product.id}>
                   <ProductCard
                     product={product}
                   />
-                </li>
+                </RelatedProductsListItem>
               )
             })}
           </RelatedProductsList>
@@ -213,12 +224,19 @@ export const productTemplateQuery = graphql`
         }
       }
       image {
+        id
         title
         fluid(maxHeight: 600 maxWidth: 600, quality: 100) {
           ...GatsbyContentfulFluid_withWebp
         }
         fixed(height: 600 width: 600, quality: 100) {
           ...GatsbyContentfulFixed_withWebp
+        }
+      }
+      images {
+        title
+        fluid(maxHeight: 600 maxWidth: 600, quality: 100) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       relatedProducts {
