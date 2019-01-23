@@ -66,6 +66,7 @@ const ButtonGroup = styled.div`
 const RelatedProductsList = styled.ol`
   display: flex;
   list-style: none;
+  -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   overflow: auto;
 `
@@ -234,6 +235,7 @@ export const productTemplateQuery = graphql`
         }
       }
       images {
+        id
         title
         fluid(maxHeight: 600 maxWidth: 600, quality: 100) {
           ...GatsbyContentfulFluid_withWebp

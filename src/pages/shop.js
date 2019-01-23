@@ -61,6 +61,13 @@ const Shop = ({ data }) => {
         `}
       >
         <PageTitle>Products</PageTitle>
+        <div css={css`
+          border-top: 1px solid #e8e9eb;
+          border-bottom: 1px solid #e8e9eb;
+          width: 100%;
+          height: 64px;
+          margin-bottom: 5rem;
+        `}/>
         <ProductList>
           {products.map(({ node }) => {
             return (

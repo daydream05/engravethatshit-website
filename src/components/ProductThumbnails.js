@@ -50,6 +50,7 @@ const ProductThumbnails = props => {
   }
 
   const { images, className } = props
+  console.log(images)
   return (
     <ProductThumbnailsRoot className={className}>
       <ProductThumbnailsContent>
