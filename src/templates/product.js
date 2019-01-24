@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import styled, { css } from 'styled-components'
-
 import { media } from '../utils/media'
 
 import { Section } from '../components/StyledComponents'
@@ -9,7 +8,7 @@ import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 import SnipcartButton from '../components/SnipcartButton'
 
-import SEO from '../components/SEO'
+import SEO  from '../components/SEO'
 import { ProductCard } from '../components/Card';
 import ProductImagesDesktop from '../components/ProductImagesDesktop'
 
@@ -89,9 +88,19 @@ const ProductTemplate = ({ data }) => {
 
   const [quantity, setQuantity] = useState(1)
 
+  const imageSources = images.map((image) => image.file.url)
+
   return (
     <Layout>
-      <SEO title={name} />
+      <SEO
+        title={name}
+        product={{
+          name,
+          description: description.childMarkdownRemark.excerpt,
+          image: imageSources,
+          price,
+        }}
+      />
       <main
         css={css`
           padding: 88px 16px;
@@ -223,6 +232,7 @@ export const productTemplateQuery = graphql`
       description {
         childMarkdownRemark {
           html
+          excerpt
         }
       }
       image {
@@ -238,6 +248,9 @@ export const productTemplateQuery = graphql`
       images {
         id
         title
+        file {
+          url
+        }
         fluid(maxHeight: 600 maxWidth: 600, quality: 100) {
           ...GatsbyContentfulFluid_withWebp
         }

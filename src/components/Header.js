@@ -44,6 +44,7 @@ const Cart = styled.button`
   cursor: pointer;
   background-color: unset;
 `
+
 const Header = ({ siteTitle }) => (
   <Nav>
     <Container>
