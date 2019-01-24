@@ -109,6 +109,7 @@ const ProductTemplate = ({ data }) => {
               display: inline-grid;
               grid-template-columns: 1fr 1fr;
               grid-gap: 2rem;
+              width: 100%;
             `}
           `}>
             <div>

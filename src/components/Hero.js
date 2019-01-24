@@ -49,6 +49,7 @@ const ShopButton = styled(Link)`
   justify-content: center;
   align-items: center;
 `
+
 const ImgContainer = styled.div`
   height: 50%;
   
@@ -77,8 +78,8 @@ const Hero = props => {
       `}
     >
       <Content>
-        <HeroTitle>Your website or app engraved.</HeroTitle>
-        <HeroSubTitle>Because having it on your phone isn't enough.</HeroSubTitle>
+        <HeroTitle>Handmade swag just for you</HeroTitle>
+        <HeroSubTitle>We know you're laptop can't fit any more stickers.</HeroSubTitle>
         <ShopButton to="/shop/">Shop now</ShopButton>
       </Content>
       <ImgContainer>
