@@ -40,9 +40,9 @@ const SEO = ({ title, description, image, pathname, article, product}) => (
           description,
           mpn,
           inStock = true,
-          ratingValue,
-          reviewCount,
-          price
+          price,
+          priceValidUntil,
+          url
         } = product
 
         schemaOrgJSONLD.push({
@@ -52,15 +52,12 @@ const SEO = ({ title, description, image, pathname, article, product}) => (
           image,
           description,
           mpn,
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue,
-            reviewCount,
-          },
           offers: {
             "@type": "Offer",
             priceCurrency: "USD",
             price,
+            url,
+            priceValidUntil,
             // default is true
             availability: inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
           }
@@ -114,8 +111,8 @@ SEO.propTypes = {
     image: PropTypes.array,
     price: PropTypes.number.isRequired,
     inStock: PropTypes.bool,
-    ratingValue: PropTypes.number,
-    reviewCount: PropTypes.number,
+    url: PropTypes.string.isRequired,
+    priceValidUntil: PropTypes.string,
   })
 }
 

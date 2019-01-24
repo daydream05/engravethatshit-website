@@ -75,11 +75,12 @@ const RelatedProductsListItem = styled.li`
   min-width: 200px;
 `
 
-const ProductTemplate = ({ data }) => {
+const ProductTemplate = ({ data, location }) => {
   const {
     name,
     id,
     price,
+    priceValidUntil,
     fields,
     description,
     images,
@@ -88,7 +89,9 @@ const ProductTemplate = ({ data }) => {
 
   const [quantity, setQuantity] = useState(1)
 
-  const imageSources = images.map((image) => image.file.url)
+  // we add https to the root since Contentful gives us a src url
+  // that uses something like this `//images.cnet` 
+  const imageSources = images.map((image) => `https:${image.file.url}`)
 
   return (
     <Layout>
@@ -99,6 +102,8 @@ const ProductTemplate = ({ data }) => {
           description: description.childMarkdownRemark.excerpt,
           image: imageSources,
           price,
+          priceValidUntil,
+          url: location.href,
         }}
       />
       <main
@@ -226,6 +231,7 @@ export const productTemplateQuery = graphql`
       name
       id
       price
+      priceValidUntil
       fields {
         path
       }
