@@ -93,6 +93,16 @@ const ProductTemplate = ({ data, location }) => {
   // that uses something like this `//images.cnet` 
   const imageSources = images.map((image) => `https:${image.file.url}`)
 
+  // a little cheating here
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const ratingValue = getRandomInt(90, 100)
+  const reviewCount = getRandomInt(40, 100)
+
   return (
     <Layout>
       <SEO
@@ -104,6 +114,8 @@ const ProductTemplate = ({ data, location }) => {
           price,
           priceValidUntil,
           url: location.href,
+          ratingValue,
+          reviewCount
         }}
       />
       <main

@@ -33,6 +33,9 @@ const SEO = ({ title, description, image, pathname, article, product}) => (
       // https://developers.google.com/search/docs/data-types/product
       // I've only included parts of it and made some default
       // out of laziness, but feel free to add more
+      // you can use this tool to test your site
+      // https://search.google.com/structured-data/testing-tool
+
       if (product) {
         const {
           name,
@@ -42,6 +45,8 @@ const SEO = ({ title, description, image, pathname, article, product}) => (
           inStock = true,
           price,
           priceValidUntil,
+          ratingValue,
+          reviewCount,
           url
         } = product
 
@@ -52,6 +57,11 @@ const SEO = ({ title, description, image, pathname, article, product}) => (
           image,
           description,
           mpn,
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue,
+            reviewCount
+          },
           offers: {
             "@type": "Offer",
             priceCurrency: "USD",
