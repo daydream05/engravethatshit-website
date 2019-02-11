@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
           color: inherit;
         }
       `}>
-          <Img fluid={image.fluid} />
+          <Img fluid={image.fluid} css={css`border-radius: 10%;`}/>
           <div css={css`
             margin-top: 1rem;
             margin-bottom: 1rem;

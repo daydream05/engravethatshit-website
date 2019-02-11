@@ -4,17 +4,17 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require("dotenv").config({path: `.env.${activeEnv}`})
 
-const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://engravethatshit.com/' 
+const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://laserass.com/' 
 
 module.exports = {
   siteMetadata: {
-    title: `Engrave That Sh*t`,
+    title: `LaserAss`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     titleTemplate: '',
-    url: `https://engravethatshit.com/`,
+    url: `https://laserass.com/`,
     siteUrl,
-    twitterUsername: `@engravethatshit`,
+    twitterUsername: `@laserass`,
     image: `/images/gatsby-astronaut.png`,
   },
   plugins: [
