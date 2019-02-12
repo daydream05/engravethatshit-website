@@ -42,7 +42,6 @@ export default function SnipcartButton({ children, url, className, ...rest }) {
             className={className}
             data-item-url={`${data.site.siteMetadata.siteUrl}/${url || ''}`}
             data-item-custom1-name="Website/App URL"
-            data-item-custom1-required="true"
             {...rest}
           >{children}</Button>
         )
@@ -52,9 +51,5 @@ export default function SnipcartButton({ children, url, className, ...rest }) {
 }
 
 SnipcartButton.propTypes = {
-  url: PropTypes.string,
-}
-
-SnipcartButton.defaultProps = {
-  url: '',
+  url: PropTypes.string.isRequired,
 }

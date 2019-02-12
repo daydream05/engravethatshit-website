@@ -6,6 +6,7 @@ require("dotenv").config({path: `.env.${activeEnv}`})
 
 const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://laserass.com/' 
 
+console.log('storage bucket:', process.env.GATSBY_STORAGE_BUCKET)
 module.exports = {
   siteMetadata: {
     title: `LaserAss`,
