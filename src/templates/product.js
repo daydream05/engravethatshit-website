@@ -7,6 +7,7 @@ import { Section } from '../components/StyledComponents'
 import Layout from '../components/Layout'
 import QuantitySelector from '../components/QuantitySelector'
 import SnipcartButton from '../components/SnipcartButton'
+import FileUpload from '../components/FileUpload'
 
 import SEO  from '../components/SEO'
 import { ProductCard } from '../components/Card';
@@ -88,6 +89,7 @@ const ProductTemplate = ({ data, location }) => {
   } = data.contentfulProduct
 
   const [quantity, setQuantity] = useState(1)
+  const [filesUploaded, setFilesUploaded] = useState([])
 
   // we add https to the root since Contentful gives us a src url
   // that uses something like this `//images.cnet` 
@@ -144,6 +146,9 @@ const ProductTemplate = ({ data, location }) => {
             <div>
               <ProductTitle>{name}</ProductTitle>
               <Price>${price}</Price>
+              <FileUpload
+                onFilesUploaded={setFilesUploaded}
+              />
               <QuantityGroup>
                 <QuantityTitle>Quantity</QuantityTitle>
                 <QuantitySelector onQuantityChange={setQuantity} />
@@ -155,11 +160,15 @@ const ProductTemplate = ({ data, location }) => {
                   data-item-name={name}
                   data-item-price={price}
                   data-item-quantity={`${quantity}`}
+                  data-item-custom2-name="file"
+                  data-item-custom2-type="hidden"
+                  data-item-custom2-value={filesUploaded}
+                  url={fields.path}
+                  
                   css={css`
                   background-color: ${props => props.theme.colors.white};
                   color: ${props => props.theme.colors.primary};
                   border: 2px solid ${props => props.theme.colors.primary};
-
                   :hover {
                     background-color: unset;
                     color: ${props => props.theme.colors.primary};
@@ -172,6 +181,9 @@ const ProductTemplate = ({ data, location }) => {
                   data-item-name={name}
                   data-item-price={price}
                   data-item-quantity="1"
+                  data-item-custom2-name="file"
+                  data-item-custom2-type="hidden"
+                  data-item-custom2-value={filesUploaded}
                   url={fields.path}
                 >Buy it now</SnipcartButton>
               </ButtonGroup>
