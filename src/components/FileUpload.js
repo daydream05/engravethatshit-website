@@ -3,6 +3,8 @@ import { css } from 'styled-components'
 import FileUploader from 'react-firebase-file-uploader'
 import { FiXCircle } from 'react-icons/fi'
 import { Line } from 'rc-progress' 
+import { StaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import firebase from '../utils/firebase'
 
@@ -138,16 +140,31 @@ class FileUpload extends Component {
                   <div
                     css={css`
                       display: flex;
+                      position: relative;
                     `}
                   >
+                  <div>
+                    <StaticQuery
+                      query={iPhoneImageQuery}
+                      render={(data) => {
+                        return <Img fixed={data.contentfulAsset.fixed} />
+                      }}
+                    />
                     <img
                       src={downloadURL}
                       alt={fileName}
                       css={css`
-                        width: 100px;
+                        min-width: 350px;
                         height: 100%;
+                        position: absolute;
+                        top: 80px;
+                        left: 24px;
+                        height: 640px;
+                        filter: grayscale(1) sepia(1) contrast(1.5);
+                        opacity: 0.8;
                       `}
                     />
+                  </div>
                     <button
                       onClick={(e) => { this.handleDeleteImage(fileName, downloadURL)}}
                       css={css`
@@ -167,5 +184,18 @@ class FileUpload extends Component {
     )
   }
 }
+
+const iPhoneImageQuery = graphql`
+  query {
+    contentfulAsset(title: { eq: "wooden iphone holder background template"}) {
+      fluid {
+        ...GatsbyContentfulFluid_withWebp
+      }
+      fixed {
+        ...GatsbyContentfulFixed_withWebp
+      }
+    }
+  }
+`
 
 export default FileUpload

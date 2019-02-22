@@ -123,7 +123,7 @@ const IndexPage = ({ data }) => {
 
 export const homePagQuery = graphql`
   query {
-    woodProduct: contentfulProduct(slug: { eq: "wooden-mobile-apps"}) {
+    woodProduct: contentfulProduct(slug: { eq: "app-screenshot-iphone-holder"}) {
       name
       price
       image {
