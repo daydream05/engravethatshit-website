@@ -129,6 +129,7 @@ class FileUpload extends Component {
               />
             : null
         }
+        {this.props.hasWoodenIphone ?
         <div css={css`
           width: 50%;
         `}>
@@ -179,7 +180,34 @@ class FileUpload extends Component {
               </div>
             )
           })}
+        </div> : 
+        // for anything else
+        <div>
+          {this.state.downloadURLs.map((downloadURL, i) => {
+            const fileName = this.state.fileNames[i]
+            return (
+              <div key={`${fileName}-${i}`}>
+                <img
+                  src={downloadURL}
+                  alt={fileName}
+                  css={css`
+                    max-height: 150px;
+                `}
+                />
+                <button
+                  onClick={(e) => { this.handleDeleteImage(fileName, downloadURL) }}
+                  css={css`
+                    background-color: unset;
+                    border: none;
+                    height: 18px;
+                    cursor: pointer;
+                  `}
+                ><FiXCircle /></button>
+              </div>
+            )
+          })}
         </div>
+        }
       </div>
     )
   }

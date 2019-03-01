@@ -104,6 +104,8 @@ const ProductTemplate = ({ data, location }) => {
 
   const ratingValue = getRandomInt(90, 100)
   const reviewCount = getRandomInt(40, 100)
+  
+  const isWoodenIphone = location.pathname === '/shop/app-screenshot-iphone-holder/'
 
   return (
     <Layout>
@@ -148,6 +150,7 @@ const ProductTemplate = ({ data, location }) => {
               <Price>${price}</Price>
               <FileUpload
                 onFilesUploaded={setFilesUploaded}
+                isWoodenIphone={isWoodenIphone}
               />
               <QuantityGroup>
                 <QuantityTitle>Quantity</QuantityTitle>
