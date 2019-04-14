@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider } from 'styled-components'
+import { css, ThemeProvider } from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 
 import theme from '../styles/theme'
@@ -22,18 +22,13 @@ const Layout = ({ children }) => (
     render={data => (
       <>
         <ThemeProvider theme={theme}>
-          <div>
+          <div css={css`
+            background-color: ${props => props.theme.colors.black};
+            color: ${props => props.theme.colors.white};
+          `}>
             <Header siteTitle={data.site.siteMetadata.title} />
             {children}
           </div>
-        </ThemeProvider>
-        {/* Footer placed in seperate ThemeProvider to avoid Rendering an extra DIV in HTML output  */}
-        <ThemeProvider theme={theme}>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
         </ThemeProvider>
       </>
     )}

@@ -8,20 +8,19 @@ import { media } from '../utils/media'
 
 const Nav = styled.nav`
   height: ${props => props.theme.headerHeight};
-  position: fixed;
-  background-color: ${props => props.theme.colors.white};
+  position: absolute;
   z-index: 100;
   width: 100%;
-  border-bottom: 1px solid #f5f3f7;
   display: flex;
   justify-content: center;
 `
 const NavLink = styled(Link)`
   text-decoration: none;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
+  font-family: bebas-neue, sans-serif;
 
   :visited {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.white};
   }
 `
 
@@ -34,7 +33,7 @@ const Container = styled.div`
   width: 100%;
 
   ${media.desktop`
-    padding: 16px;
+    padding: 0 64px;
     margin: auto;
   `}
 `
@@ -55,7 +54,11 @@ const Header = ({ siteTitle }) => (
         <NavLink
           to="/"
         >
-          {siteTitle}
+          <span css={css`color: ${props => props.theme.colors.white};`}>
+            Another
+          </span>
+          <span css={css`color: ${props => props.theme.colors.primary};`}>
+          Swag</span>
         </NavLink>
       </span>
       <div>

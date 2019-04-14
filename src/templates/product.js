@@ -31,7 +31,6 @@ const Price = styled.span`
   font-weight: 600;
   font-size: 1.2rem;
   color: ${props => props.theme.colors.primary};
-  opacity: 0.7;
   margin-bottom: 2rem;
   display: block;
 `
@@ -167,28 +166,7 @@ const ProductTemplate = ({ data, location }) => {
                   data-item-custom2-type="hidden"
                   data-item-custom2-value={filesUploaded}
                   url={fields.path}
-                  
-                  css={css`
-                  background-color: ${props => props.theme.colors.white};
-                  color: ${props => props.theme.colors.primary};
-                  border: 2px solid ${props => props.theme.colors.primary};
-                  :hover {
-                    background-color: unset;
-                    color: ${props => props.theme.colors.primary};
-                  }
-              `}
-                >Add to cart</SnipcartButton>
-                <SnipcartButton
-                  className="snipcart-add-item"
-                  data-item-id={id}
-                  data-item-name={name}
-                  data-item-price={price}
-                  data-item-quantity="1"
-                  data-item-custom2-name="file"
-                  data-item-custom2-type="hidden"
-                  data-item-custom2-value={filesUploaded}
-                  url={fields.path}
-                >Buy it now</SnipcartButton>
+                >Shut up and take my money</SnipcartButton>
               </ButtonGroup>
               <Description dangerouslySetInnerHTML={{ __html: description.childMarkdownRemark.html }} />
             </div>

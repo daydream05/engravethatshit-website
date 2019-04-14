@@ -8,13 +8,15 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  font-family: bebas-neue, sans-serif;
   background-color: ${props => props.theme.colors.primary};
   height: 64px;
-  color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.secondary};
   font-size: 18px;
   cursor: pointer;
   padding: 0 2rem;
   justify-self: flex-end;
+  border: none;
 `
 
 // The purpose of this function is to make it easier to append the siteUrl
