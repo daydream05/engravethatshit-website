@@ -4,18 +4,18 @@ console.log(`Using environment config: '${activeEnv}'`)
 
 require("dotenv").config({path: `.env.${activeEnv}`})
 
-const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://laserass.com/' 
+const siteUrl = activeEnv === 'development' ? 'http://localhost:8000' : 'https://anotherswag.com/' 
 
 console.log('storage bucket:', process.env.GATSBY_STORAGE_BUCKET)
 module.exports = {
   siteMetadata: {
-    title: `LaserAss`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    titleTemplate: '',
-    url: `https://laserass.com/`,
+    title: `AnotherSwag`,
+    description: `Custom handmade swag made for forward-thinking companies.`,
+    author: `@vince_parulan`,
+    titleTemplate: ``,
+    url: `https://anotherswag.com/`,
     siteUrl,
-    twitterUsername: `@laserass`,
+    twitterUsername: `@anotherswag`,
     image: `/images/gatsby-astronaut.png`,
   },
   plugins: [
@@ -32,10 +32,12 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
+        typekit: {
+          id : `xks8taf`
+        }
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,

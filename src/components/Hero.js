@@ -21,26 +21,27 @@ const Content = styled.div `
 `
 
 const HeroTitle = styled.h1`
-  font-size: 24px;
+  font-size: 64px;
+  font-family: bebas-neue, sans-serif;
 
   ${media.desktop`
-    font-size: 48px;
+    font-size: 128px;
+    line-height: 0.8;
   `}
 `
 
 const HeroSubTitle = styled.p`
   ${media.desktop`
     font-family: 500;
-    font-size: 18px;
-    color: ${props => props.theme.colors.darkGray};
+    font-size: 24px;
   `}
 `
 
 const ShopButton = styled(Link)`
   background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.white};
+  font-family: bebas-neue, sans-serif;
+  color: ${props => props.theme.colors.secondary};
   height: 64px;
-  border-radius: 4px;
   width: 200px;
   cursor: pointer;
   text-decoration: none;
@@ -64,6 +65,8 @@ const Hero = props => {
     <Section
       fullPage
       css={css`
+        background-color: ${props => props.theme.colors.black};
+        color: ${props => props.theme.colors.white};
         padding: 64px 16px;
         display: flex;
         flex-direction: column-reverse;
@@ -78,9 +81,9 @@ const Hero = props => {
       `}
     >
       <Content>
-        <HeroTitle>Handmade swag just for you</HeroTitle>
-        <HeroSubTitle>We know you're laptop can't fit any more stickers.</HeroSubTitle>
-        <ShopButton to="/shop/">Shop now</ShopButton>
+        <HeroTitle>Custom Handmade Swag</HeroTitle>
+        <HeroSubTitle>For when your laptop can’t fit anymore stickers.</HeroSubTitle>
+        <ShopButton to="/shop/">Keep talking, i'm listening</ShopButton>
       </Content>
       <ImgContainer>
         {image}

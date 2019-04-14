@@ -91,7 +91,7 @@ class FileUpload extends Component {
           css={css`
             display: flex;
             background-color: ${props => props.theme.colors.lightGray};
-            color: ${props => props.theme.colors.white};
+            color: ${props => props.theme.colors.base};
             height: 48px;
             border-radius: 4px;
             padding: 0.25rem;
@@ -100,6 +100,7 @@ class FileUpload extends Component {
             margin-bottom: 1rem;
             align-items: center;
             justify-content: center;
+            font-family: bebas-neue, sans-serif;
             cursor: pointer;
           `}
         >

@@ -62,14 +62,15 @@ const Shop = ({ data }) => {
       >
         <PageTitle>Products</PageTitle>
         <div css={css`
-          border-top: 1px solid #e8e9eb;
-          border-bottom: 1px solid #e8e9eb;
           width: 100%;
-          height: 64px;
+          background-color: #e8e9eb;
+          height: 1px;
           margin-bottom: 5rem;
+          max-width: ${props => props.theme.sizes.maxWidth};
         `}/>
         <ProductList>
           {products.map(({ node }) => {
+            console.log(node.fields.path)
             return (
               <ListItem key={node.id}>
                 <ProductCard product={node} />

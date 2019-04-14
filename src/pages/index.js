@@ -61,62 +61,6 @@ const IndexPage = ({ data }) => {
             `}
           />}
       />
-      <Section
-        fullPage
-        css={css`
-          background-color: rgb(111, 47, 160);
-          ${media.desktop`
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background-color: ${props => props.theme.colors.primary};
-            color: ${props => props.theme.colors.white};
-        `}
-        `}
-      >
-        <div css={css`
-          padding: 16px;
-          background-color: ${props => props.theme.colors.primary};
-          ${media.desktop`
-            padding: 0;
-            height: inherit;
-          `}
-        `}>
-          <Img
-            fluid={ledProduct.image.fluid}
-            css={css`
-              height: 400px;
-              ${media.desktop`
-                height: 100%;
-                padding-bottom: 0;
-              `}
-            `}
-          />
-        </div>
-        <FeaturesContainer>
-          <h2 css={css`
-            font-weight: 500;
-            font-size: 18px;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-          `}>Features</h2>
-          <div>
-            <div>
-              <FeatureTitle>Works with AA batteries</FeatureTitle>
-              <FeatureDescription>Say goodbye to 10% battery life left icon while admiring your beautiful creation.</FeatureDescription>
-            </div>
-            <div>
-              <FeatureTitle>Offline mode</FeatureTitle>
-              <FeatureDescription>Has a built-in offline mode right out of the box. No need to install a service worker. And no need to spend your hard-earned VC money on those pesky AWS fees every month. </FeatureDescription>
-            </div>
-            <div>
-              <FeatureTitle>Multi-color LED</FeatureTitle>
-              <FeatureDescription>In case your team realizes “Facebook  Blue” is out and “Spotify Green” is in.<br/><br/>(Sorry we don't do gradients)</FeatureDescription>
-            </div>
-            <ShopButton to="/shop/" css={css`margin: auto;`}>Shop now</ShopButton>
-          </div>
-        </FeaturesContainer>
-      </Section>
     </Layout>
   )
 }

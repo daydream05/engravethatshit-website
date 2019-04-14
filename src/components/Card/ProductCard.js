@@ -14,23 +14,34 @@ const CardContainer = styled.div`
   margin: auto;
 `
 const ProductName = styled.h3`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: normal;
+  font-family: bebas-neue, sans-serif;
   margin: 0;
-  color: ${props => props.theme.colors.base};
+  color: ${props => props.theme.colors.white};
 `
 
 const ProductPrice = styled.span`
-  font-weight: 600;
+  font-weight: normal;
+  font-family: bebas-neue, sans-serif;
   color: ${props => props.theme.colors.lightGray};
-  font-size: 1rem;
+  font-size: 1.5rem;
+  justify-self: end;
+`
+
+const ProductShipping = styled.span`
+  font-family: bebas-neue, sans-serif;
+  font-size: 16px;
+  color: #F6C90E;
+  letter-spacing: 0;
 `
 
 const ProductCard = ({ product }) => {
   const { fields, image, name, price } = product
+  const isFreeShipping = true
   return (
     <CardContainer>
-      <Link to={fields.path} css={css`
+      <Link to={`/${fields.path}`} css={css`
         flex: 1;
         text-decoration: none;
         transition-duration: 200ms;
@@ -41,13 +52,18 @@ const ProductCard = ({ product }) => {
           color: inherit;
         }
       `}>
-          <Img fluid={image.fluid} css={css`border-radius: 10%;`}/>
+          <Img fluid={image.fluid} />
           <div css={css`
             margin-top: 1rem;
             margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
           `}>
             <ProductName>{name}</ProductName>
             <ProductPrice>${price}</ProductPrice>
+            {isFreeShipping &&
+              <ProductShipping>FREE SHIPPING</ProductShipping>
+            }
           </div>
       </Link>
     </CardContainer>
